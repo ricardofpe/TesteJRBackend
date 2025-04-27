@@ -7,64 +7,74 @@ namespace apiToDo.Models
 {
     public class Tarefas
     {
+        private static List<TarefaDTO> _listaDeTarefas = new List<TarefaDTO>()
+        {
+            new TarefaDTO { ID_TAREFA = 1, DS_TAREFA = "Fazer Compras" },
+            new TarefaDTO { ID_TAREFA = 2, DS_TAREFA = "Fazer Atividade Faculdade" },
+            new TarefaDTO { ID_TAREFA = 3, DS_TAREFA = "Subir Projeto de Teste no GitHub" }
+        };
+
         public List<TarefaDTO> lstTarefas()
         {
-            try
-            {
-                List<TarefaDTO> lstTarefas = new List<TarefaDTO>();
-
-                lstTarefas.Add(new TarefaDTO
-                {
-                    ID_TAREFA = 1,
-                    DS_TAREFA = "Fazer Compras"
-                });
-
-                lstTarefas.Add(new TarefaDTO
-                {
-                    ID_TAREFA = 2,
-                    DS_TAREFA = "Fazer Atividad Faculdade"
-                });
-
-                lstTarefas.Add(new TarefaDTO
-                {
-                    ID_TAREFA = 3,
-                    DS_TAREFA = "Subir Projeto de Teste no GitHub"
-                });
-
-                return new List<TarefaDTO>();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            return _listaDeTarefas.ToList();
         }
 
+        public List<TarefaDTO> InserirTarefa(TarefaDTO request)
+        {
+            if (request == null)
+            {
+                throw new ArgumentNullException(nameof(request), "O objeto TarefaDTO não pode ser nulo.");
+            }
 
-        public void InserirTarefa(TarefaDTO Request)
-        {
-            try
+            if (string.IsNullOrWhiteSpace(request.DS_TAREFA))
             {
-                List<TarefaDTO> lstResponse = lstTarefas();
-                lstResponse.Add(Request);
+                throw new ArgumentException("A descrição da tarefa não pode ser vazia.", nameof(request.DS_TAREFA));
             }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+
+            int novoId = _listaDeTarefas.Any() ? _listaDeTarefas.Max(t => t.ID_TAREFA) + 1 : 1;
+            request.ID_TAREFA = novoId;
+
+            _listaDeTarefas.Add(request);
+            return _listaDeTarefas.ToList();
         }
-        public void DeletarTarefa(int ID_TAREFA)
+
+        public List<TarefaDTO> DeletarTarefa(int ID_TAREFA)
         {
-            try
+            var tarefaParaRemover = _listaDeTarefas.FirstOrDefault(t => t.ID_TAREFA == ID_TAREFA);
+
+            if (tarefaParaRemover == null)
             {
-                List<TarefaDTO> lstResponse = lstTarefas();
-                var Tarefa = lstResponse.FirstOrDefault(x => x.ID_TAREFA == ID_TAREFA);
-                TarefaDTO Tarefa2 = lstResponse.Where(x => x.ID_TAREFA == Tarefa.ID_TAREFA).FirstOrDefault();
-                lstResponse.Remove(Tarefa2);
+                throw new ArgumentException($"Tarefa com ID {ID_TAREFA} não encontrada.", nameof(ID_TAREFA));
             }
-            catch (Exception ex)
+
+            _listaDeTarefas.Remove(tarefaParaRemover);
+
+            return _listaDeTarefas.ToList();
+        }
+
+        public List<TarefaDTO> AtualizarTarefa(TarefaDTO tarefaAtualizada)
+        {
+            if (tarefaAtualizada == null)
             {
-                throw ex;
+                throw new ArgumentNullException(nameof(tarefaAtualizada), "O objeto TarefaDTO não pode ser nulo.");
             }
+
+            var tarefaExistente = _listaDeTarefas.FirstOrDefault(t => t.ID_TAREFA == tarefaAtualizada.ID_TAREFA);
+
+            if (tarefaExistente == null)
+            {
+                throw new ArgumentException($"Tarefa com ID {tarefaAtualizada.ID_TAREFA} não encontrada.", nameof(tarefaAtualizada.ID_TAREFA));
+            }
+
+            tarefaExistente.DS_TAREFA = tarefaAtualizada.DS_TAREFA;
+
+            return _listaDeTarefas.ToList();
+        }
+
+        public TarefaDTO ObterTarefaPorId(int idTarefa)
+        {
+            var tarefa = _listaDeTarefas.FirstOrDefault(t => t.ID_TAREFA == idTarefa);
+            return tarefa;
         }
     }
 }

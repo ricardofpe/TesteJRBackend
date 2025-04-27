@@ -1,9 +1,35 @@
 [
   {
     "ContainingType": "apiToDo.Controllers.TarefasController",
+    "Method": "AtualizarTarefa",
+    "RelativePath": "Tarefas/AtualizarTarefa",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "tarefaAtualizada",
+        "Type": "apiToDo.DTO.TarefaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[apiToDo.DTO.TarefaDTO, apiToDo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "apiToDo.Controllers.TarefasController",
     "Method": "DeleteTask",
     "RelativePath": "Tarefas/DeletarTarefa",
-    "HttpMethod": "GET",
+    "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
     "Parameters": [
@@ -13,7 +39,17 @@
         "IsRequired": false
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[apiToDo.DTO.TarefaDTO, apiToDo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "apiToDo.Controllers.TarefasController",
@@ -24,21 +60,67 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "Request",
+        "Name": "request",
         "Type": "apiToDo.DTO.TarefaDTO",
         "IsRequired": true
       }
     ],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[apiToDo.DTO.TarefaDTO, apiToDo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "apiToDo.Controllers.TarefasController",
     "Method": "lstTarefas",
     "RelativePath": "Tarefas/lstTarefas",
-    "HttpMethod": "POST",
+    "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
     "Parameters": [],
-    "ReturnTypes": []
+    "ReturnTypes": [
+      {
+        "Type": "System.Collections.Generic.List\u00601[[apiToDo.DTO.TarefaDTO, apiToDo, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "apiToDo.Controllers.TarefasController",
+    "Method": "ObterTarefaPorId",
+    "RelativePath": "Tarefas/ObterTarefaPorId",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "idTarefa",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "apiToDo.DTO.TarefaDTO",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   }
 ]
