@@ -1,0 +1,44 @@
+[
+  {
+    "ContainingType": "apiToDo.Controllers.TarefasController",
+    "Method": "DeleteTask",
+    "RelativePath": "Tarefas/DeletarTarefa",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "ID_TAREFA",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "apiToDo.Controllers.TarefasController",
+    "Method": "InserirTarefas",
+    "RelativePath": "Tarefas/InserirTarefas",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Request",
+        "Type": "apiToDo.DTO.TarefaDTO",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "apiToDo.Controllers.TarefasController",
+    "Method": "lstTarefas",
+    "RelativePath": "Tarefas/lstTarefas",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  }
+]

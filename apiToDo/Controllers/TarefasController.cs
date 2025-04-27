@@ -16,13 +16,13 @@ namespace apiToDo.Controllers
         {
             try
             {
-              
+
                 return StatusCode(200);
             }
 
             catch (Exception ex)
             {
-                return StatusCode(400, new { msg = $"Ocorreu um erro em sua API {ex.Message}"});
+                return StatusCode(400, new { msg = $"Ocorreu um erro em sua API {ex.Message}" });
             }
         }
 
